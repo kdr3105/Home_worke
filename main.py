@@ -15,7 +15,10 @@
 #
 import random
 list_of_word = ['code', 'bit', 'list', 'soul', 'next']
-
+"""
+Самая главная программа. примитивная 
+до ужаса
+"""
 def morze_encoder(sentence):
     """
     Функция переводит анлийские слова в код Морзе
