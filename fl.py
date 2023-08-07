@@ -1,16 +1,17 @@
-# Сперва импортируем Flask
 from flask import Flask
-# Затем создадим экземпляр этого Flask, назовем его арр -
-# это будет наше приложение
-арр = Flask(__name__)
-# Что такое name ?
-# При запуске сценария значение переменной name равно main
-# Эта переменная помогает Flask разбрираться, где он находится
-# и без нее он просто не заработает
-# Теперь создадим функцию, которая будет что-то делать
-# Например, pageindex - это функция, которая будет возвращать 'Hello Wor
+app = Flask(__name__)
+@app.route("/")
 def page_index():
-    return "Я страничка"
-# Теперь используем метод у приложения, который зарегистрирует маршрут
-# Например, для главной страницы будет вызвана функция pageindex
-app.add_url_rule('/',view_func=page_index)
+    return "Главная страничка"
+@app.route("/messages/")
+def pagemessages():
+    return "Сообщения пользователя"
+
+@app.route('/users/<uid>')
+def profile(uid):
+    return f'<h1>Профиль {uid}</h1>'
+@app.route('/catalog/items/<itemid>')
+def profile_1(itemid):
+    return f'<h1>Страничка товара {itemid}</hl>'
+
+app.run()
