@@ -23,7 +23,7 @@ def pagemessages(xid):
     exist_candidate = True
     for i in my_candidats:
         if i['id']==xid:
-            print_candidat = f'<img src="({i["picture"]})">\n'
+            print_candidat = f'<img src="{i["picture"]}"/>\n'
             print_candidat += f"</img>\n"
             print_candidat += f"<рге>\n"
             print_candidat += f"Имя кандидата - {i['name']}\n"
