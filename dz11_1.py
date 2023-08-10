@@ -21,4 +21,41 @@ def hello():
 def print_candidat(x):
     return render_template('single.html', candidate=utils.get_candidate(x))
 
+@app.route('/candidate/serch/', methods=['POST', 'GET']) # Доработать этот участок
+def open_str():
+    poisk = False
+    if request.method=='POST':
+        naidenoe = utils.get_candidates_by_name(request.form['name'])
+        len_serch = len(naidenoe)
+        poisk = True
+        if naidenoe[0][0]=='id':
+            len_serch = 0
+            poisk = True
+            naidenoe=[[1, "нет таких кандидатов"]]
+    else:
+        naidenoe = [[0,0]]
+        len_serch = 0
+    return render_template('search.html', items=naidenoe, lenthe=len_serch, find=poisk)
+
+@app.route('/candidate/skill/', methods=['POST', 'GET'])
+def serch_skill():
+    poisk = False
+    skill_obr = ''
+    if request.method=='POST':
+        skill_obr = request.form['navik']
+        print(skill_obr)
+        naidenoe = utils.get_candidates_by_skill(skill_obr)
+        print(len(naidenoe))
+        len_skill = len(naidenoe)
+        poisk = True
+        if naidenoe[0][0]=='id':
+            len_skill = 0
+            poisk = True
+            naidenoe=[[1, "нет таких кандидатов"]]
+    else:
+        naidenoe = [[0,0]]
+        len_skill = 0
+    return render_template('skill.html', items=naidenoe, skill_name=len_skill, len_skill=skill_obr, find=poisk)
+
+
 app.run()

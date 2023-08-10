@@ -5,6 +5,22 @@
     <title>Поиск по навыкау</title>
 </head>
 <body>
-
+<form method="post">
+    <div class="form-group">
+        <label for="title">Введите скил</label>
+        <input type="text" name="navik"
+               placeholder="Post title" class="form-control"
+               value="{{ request.form['navik'] }}"></input>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Найти</button>
+    </div>
+</form>
+{% if find %}
+    <h1>найдено cо скилом {{ skill_name }}: {{ len_skill }}</h1>
+    {% for id, name in items %}
+        <p><a href="/candidate/{{ id }}">{{ name }}</a></p>
+    {% endfor %}
+{% endif %}
 </body>
 </html>

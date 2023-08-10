@@ -28,34 +28,37 @@ def get_candidate(candidate_id): # возвращает одного канди�
     return print_candidat
 def get_candidates_by_name(candidate_name): # возвращает кандидатов по имени
     list_of_candidates = read_json_file()
-    name_data = '<pre>\n'
+    name_data = []
     exist_name = True
     for i in list_of_candidates:
         if str(candidate_name).lower() in str(i["name"]).lower().split():
-            name_data += f"Имя кандидата - {i['name']}\n"
-            name_data += f"Позиция кандидата {i['position']}\n"
-            name_data += f"Навыки через запятую {i['skills']}\n"
-            name_data += f"=========================================================\n"
+            stroka_data = []
+            stroka_data.append(i['id'])
+            stroka_data.append(i['name'])
+            name_data.append(stroka_data)
             exist_name = False
     if exist_name:
-        name_data += "Нет кандидатов с таким именем\n"
-    name_data += '</pre>\n'
+        stroka_data = []
+        stroka_data.append('id')
+        stroka_data.append('name')
+        name_data.append(stroka_data)
     return name_data
 def get_candidates_by_skill(skill_name): # возвращает кандидатов по навыку
     list_of_candidates = read_json_file()
-    skill_data = ''
-    skill_data += '<pre>\n'
+    skill_data = []
     exist_skils = True
+    print(skill_name)
     for i in list_of_candidates:
         if str(skill_name).lower() in str(i["skills"]).lower().split(', '):
-            skill_data += f"Имя кандидата - {i['name']}\n"
-            skill_data += f"Позиция кандидата {i['position']}\n"
-            skill_data += f"Навыки через запятую {i['skills']}\n"
-            skill_data += f"=========================================================\n"
+            stroka_data = []
+            stroka_data.append(i['id'])
+            stroka_data.append(i['name'])
+            skill_data.append(stroka_data)
             exist_skils = False
     if exist_skils:
-        skill_data += "Нет кандидатов с таким навыком\n"
-    skill_data += '</pre>\n'
+        stroka_data.append('id')
+        stroka_data.append('name')
+        skill_data.append(stroka_data)
     return skill_data
 def read_json_file(path='candidate.json'):
     with open(path, 'r', ) as f:
