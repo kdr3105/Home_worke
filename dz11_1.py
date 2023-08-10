@@ -1,5 +1,5 @@
-from flask import Flask
-
+from flask import Flask, request, render_template
+import utils
 app = Flask(__name__)
 
 @app.route("/")
@@ -13,5 +13,12 @@ def page_index():
     print_data += '</div>\n'
     return print_data
 
+@app.route("/vtoraya/")
+def hello():
+    return render_template('list.html', items=utils.load_candidates_from_json())
+
+@app.route("/candidate/<x>")
+def print_candidat(x):
+    return render_template('single.html', candidate=utils.get_candidate(x))
 
 app.run()

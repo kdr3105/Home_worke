@@ -1,34 +1,30 @@
 import json
 def load_candidates_from_json(path='candidate.json'): # возвращает список всех кандидатов
     list_of_candidates = read_json_file(path)
-    print_data = ''
-    print_data += '<pre>\n'
+    print_data = []
     for i in list_of_candidates:
-        print_data += f"Имя кандидата - {i['name']}\n"
-        print_data += f"Позиция кандидата {i['position']}\n"
-        print_data += f"Навыки через запятую {i['skills']}\n"
-        print_data += f"=========================================================\n"
-    print_data += '</pre>'
+        stroka_data = []
+        stroka_data.append(i['id'])
+        stroka_data.append(i['name'])
+        print_data.append(stroka_data)
     return print_data
 def get_candidate(candidate_id): # возвращает одного кандидата по его id
     list_of_candidates = read_json_file()
-    print_candidat = ''
+    print_candidat = {}
     exist_candidate = True
     for i in list_of_candidates:
-        if i['id'] == candidate_id:
-            print_candidat = f'<img src="{i["picture"]}"/>\n'
-            print_candidat += f"</img>\n"
-            print_candidat += f"<рге>\n"
-            print_candidat += f"Имя кандидата - {i['name']}\n"
-            print_candidat += f"Позиция кандидата {i['position']}\n"
-            print_candidat += f"Навыки через запятую {i['skills']}\n"
-            print_candidat += f"</рге>\n"
+        if i['id'] == int(candidate_id):
+            print_candidat['imegis'] = i["picture"]
+            print_candidat['name'] = i['name']
+            print_candidat['posiion'] = i['position']
+            print_candidat['skilss'] = i['skills']
             exist_candidate = False
             break
     if exist_candidate:
-        print_candidat += f"<рге>\n"
-        print_candidat += f"Нет такого кандидата\n"
-        print_candidat += f"</рге>\n"
+        print_candidat['imegis'] = "Нет такого"
+        print_candidat['name'] = "Нет такого"
+        print_candidat['posiion'] = "Нет такого"
+        print_candidat['skilss'] = "Нет такого"
     return print_candidat
 def get_candidates_by_name(candidate_name): # возвращает кандидатов по имени
     list_of_candidates = read_json_file()
